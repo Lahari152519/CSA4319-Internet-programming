@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Coffee Shop</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            color: #333333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select,
+        button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"],
+        button {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="login">
+            <h1>Welcome to Coffee Shop</h1>
+            <form id="loginForm" action="#" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username"><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password"><br>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+
+        <div id="menu" style="display:none;">
+            <h2>Menu</h2>
+            <ul>
+                <li><img src="coffee.jpg" alt="Coffee"> Coffee - Rs. 50</li>
+                <li><img src="tea.jpg" alt="Tea"> Tea - Rs. 30</li>
+                <li><img src="orange_coffee.jpg" alt="Orange Coffee"> Orange Coffee - Rs. 60</li>
+                <li><img src="black_coffee.jpg" alt="Black Coffee"> Black Coffee - Rs. 40</li>
+            </ul>
+            <button onclick="showOrderPage()">Order</button>
+        </div>
+
+        <div id="order" style="display:none;">
+            <h2>Order</h2>
+            <form id="orderForm" action="#" method="post">
+                <label for="foodItem">Select Food Item:</label>
+                <select id="foodItem" name="foodItem">
+                    <option value="Coffee">Coffee</option>
+                    <option value="Tea">Tea</option>
+                    <option value="OrangeCoffee">Orange Coffee</option>
+                    <option value="BlackCoffee">Black Coffee</option>
+                </select><br>
+                <input type="submit" value="Place Order">
+            </form>
+        </div>
+
+        <div id="address" style="display:none;">
+            <h2>Delivery Address</h2>
+            <form id="addressForm" action="#" method="post">
+                <label for="deliveryAddress">Address:</label>
+                <input type="text" id="deliveryAddress" name="deliveryAddress"><br>
+                <input type="submit" value="Confirm">
+            </form>
+        </div>
+
+        <div id="orderConfirmed" style="display:none;">
+            <h2>Order Confirmed</h2>
+            <p>Your order has been confirmed. It will be delivered to the provided address.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if (username === "radhika" && password === "182003") {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("menu").style.display = "block";
+            } else {
+                alert("Invalid username or password.");
+            }
+        });
+
+        function showOrderPage() {
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("order").style.display = "block";
+        }
+
+        document.getElementById("orderForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("order").style.display = "none";
+            document.getElementById("address").style.display = "block";
+        });
+
+        document.getElementById("addressForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("address").style.display = "none";
+            document.getElementById("orderConfirmed").style.display = "block";
+        });
+    </script>
+</body>
+
+</html>
